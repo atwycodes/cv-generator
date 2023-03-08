@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.form__container {
+  display: inline;
+}
+
+.form__item-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+legend {
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+}

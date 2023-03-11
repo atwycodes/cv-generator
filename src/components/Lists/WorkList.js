@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export class TemplateList extends Component {
+class WorkList extends Component {
   render () {
-    const {data, listClass} = this.props
+    const {data} = this.props
     return (
-      <div className={`${listClass}__container`}>
+      <div className={'work__container'}>
         {Object.keys(data).map((key,index) => {
           return <p key={index}>{data[key]}</p>
         })}
@@ -13,4 +13,4 @@ export class TemplateList extends Component {
   }
 }
 
-export default TemplateList
+export default WorkList

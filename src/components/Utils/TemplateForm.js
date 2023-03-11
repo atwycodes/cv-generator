@@ -2,7 +2,14 @@ import React, { Component } from 'react'
 
 class TemplateForm extends Component {
   render() {
-    const {changeHandler, formId, formType, formLabel, parentClass = 'form__item-wrapper'} = this.props
+    const {
+      changeHandler, 
+      formId, 
+      formType, 
+      formLabel, 
+      parentClass = 'form__item-wrapper'
+    } = this.props
+    
     return (
       <div className= {parentClass}>
         <label htmlFor={formId}>{formLabel}</label>

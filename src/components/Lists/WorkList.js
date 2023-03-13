@@ -1,16 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 class WorkList extends Component {
-  render () {
-    const {data} = this.props
+  render() {
+    const { data } = this.props;
     return (
-      <div className={'work__container'}>
-        {Object.keys(data).map((key,index) => {
-          return <p key={index}>{data[key]}</p>
+      <div className={"work__container"}>
+        {data.map((workItem, index) => {
+          return (
+            <div>
+              <p>Company: {workItem.data.workCompany}</p>
+              <p>Position: {workItem.data.workPosition}</p>
+              <p>
+                Period: {workItem.data.workFrom} - {workItem.data.workTo}
+              </p>
+            </div>
+          );
         })}
       </div>
-    )
+    );
   }
 }
 
-export default WorkList
+export default WorkList;

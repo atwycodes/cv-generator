@@ -1,4 +1,5 @@
-html,body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -10,7 +11,8 @@ html,body {
   grid-template-rows: auto 1fr auto;
 }
 
-.header, .footer {
+.header,
+.footer {
   color: white;
   background-color: black;
 }
@@ -29,7 +31,7 @@ html,body {
 .form__item-wrapper {
   display: flex;
   flex-direction: column;
-  
+
   justify-content: center;
   align-items: flex-start;
 }

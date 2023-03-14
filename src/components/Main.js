@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import baseCV from "./Utils/baseCV";
 import GeneralForm from "./Forms/GeneralForm";
 import GeneralList from "./Lists/GeneralList";
 import RenderWorkForm from "./Renders/RenderWorkForm";
 import WorkList from "./Lists/WorkList";
-import baseCV from "./Utils/baseCV";
+import RenderEducationForm from "./Renders/RenderEducationForm";
+import EducationList from "./Lists/EducationList";
 
 class Main extends Component {
   constructor(props) {
@@ -13,7 +15,10 @@ class Main extends Component {
 
     this.handleGeneralChange = this.handleGeneralChange.bind(this);
     this.handleWorkChange = this.handleWorkChange.bind(this);
+    this.handleScopeChange = this.handleScopeChange.bind(this);
     this.addWorkForm = this.addWorkForm.bind(this);
+    this.handleEducationChange = this.handleEducationChange.bind(this);
+    this.addEducationForm = this.addEducationForm.bind(this);
   }
 
   handleGeneralChange(event) {
@@ -30,11 +35,10 @@ class Main extends Component {
         },
       };
     });
-    console.log(this.state.general);
   }
 
   handleWorkChange(event, idCriteria) {
-    const { value, id } = event.target;
+    const { id, value } = event.target;
 
     this.setState((prevState) => {
       const newWork = prevState.work.map((workItem) => {
@@ -45,7 +49,6 @@ class Main extends Component {
       });
       return { ...prevState, work: [...newWork] };
     });
-    console.log(this.state);
   }
 
   addWorkForm() {
@@ -66,6 +69,55 @@ class Main extends Component {
     }));
   }
 
+  handleScopeChange(event, idCriteria) {
+    const { value } = event.target;
+
+    this.setState((prevState) => {
+      const newWork = prevState.work.map((workItem) => {
+        if (workItem.id === idCriteria) {
+          return { ...workItem, scope: [...workItem.scope, value] };
+        }
+        return workItem;
+      });
+      return { ...prevState, work: [...newWork] };
+    });
+  }
+
+  handleEducationChange(event, idCriteria) {
+    const { value, id } = event.target;
+
+    this.setState((prevState) => {
+      const newEducation = prevState.education.map((educationItem) => {
+        if (educationItem.id === idCriteria) {
+          return {
+            ...educationItem,
+            data: { ...educationItem.data, [id]: value },
+          };
+        }
+        return educationItem;
+      });
+      return { ...prevState, education: [...newEducation] };
+    });
+  }
+
+  addEducationForm() {
+    this.setState((prevState) => ({
+      ...prevState,
+      education: [
+        ...prevState.education,
+        {
+          id: crypto.randomUUID(),
+          data: {
+            educationLocation: "",
+            educationType: "",
+            educationFrom: "",
+            educationTo: "",
+          },
+        },
+      ],
+    }));
+  }
+
   render() {
     return (
       <div className="main">
@@ -77,13 +129,21 @@ class Main extends Component {
           <RenderWorkForm
             workFormState={this.state.work}
             changeHandler={this.handleWorkChange}
+            changeHandlerScope={this.handleScopeChange}
           />
-
           <button onClick={this.addWorkForm}>Add Work Experience</button>
+
+          <RenderEducationForm
+            educationFormState={this.state.education}
+            changeHandler={this.handleEducationChange}
+          />
+          <button onClick={this.addEducationForm}>Add Education</button>
         </section>
+
         <section className="generated-cv__container">
           <GeneralList data={this.state.general.data} />
           <WorkList data={this.state.work} />
+          <EducationList data={this.state.education} />
         </section>
       </div>
     );

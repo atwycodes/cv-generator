@@ -8,9 +8,13 @@ class WorkList extends Component {
         {data.map((workItem, index) => {
           return (
             <div>
-              <p>Company: {workItem.data.workCompany}</p>
-              <p>Position: {workItem.data.workPosition}</p>
-              <p>
+              <p key={`workCompany ${index}`}>
+                Company: {workItem.data.workCompany}
+              </p>
+              <p key={`workPosition ${index}`}>
+                Position: {workItem.data.workPosition}
+              </p>
+              <p key={`workPeriod ${index}`}>
                 Period: {workItem.data.workFrom} - {workItem.data.workTo}
               </p>
             </div>

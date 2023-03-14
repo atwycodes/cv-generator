@@ -21,24 +21,20 @@ class WorkForm extends Component {
     ];
 
     return (
-      <div>
-        <form>
-          <fieldset className={parentContainerClass}>
-            <legend>Work Experience</legend>
-            {formFields.map((formObj, index) => {
-              return (
-                <TemplateForm
-                  changeHandler={(event) => changeHandler(event, this.state.id)}
-                  key={index}
-                  formId={formObj.id}
-                  formType={formObj.type}
-                  formLabel={formObj.label}
-                />
-              );
-            })}
-          </fieldset>
-        </form>
-      </div>
+      <fieldset className={parentContainerClass}>
+        <legend>Work Experience</legend>
+        {formFields.map((formObj, index) => {
+          return (
+            <TemplateForm
+              changeHandler={(event) => changeHandler(event, this.state.id)}
+              key={index}
+              formId={formObj.id}
+              formType={formObj.type}
+              formLabel={formObj.label}
+            />
+          );
+        })}
+      </fieldset>
     );
   }
 }

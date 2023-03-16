@@ -1,18 +1,41 @@
 import React, { Component } from "react";
 import WorkForm from "../Forms/WorkForm";
 
-export class RenderWorkForm extends Component {
+class RenderWorkForm extends Component {
   render() {
-    const { workFormState, changeHandler } = this.props;
+    const {
+      workState,
+      changeHandlerWork,
+      changeHandlerScope,
+      addHandlerScope,
+    } = this.props;
+
     return (
       <div>
-        {workFormState.map((formObject) => {
+        {workState.map((formObject, index) => {
           return (
-            <WorkForm
-              key={formObject.id}
-              changeHandler={changeHandler}
-              workFormId={formObject.id}
-            />
+            <form
+              key={`work-form__container ${formObject.id}`}
+              className="work-form__container"
+            >
+              <fieldset>
+                <legend>Work Experience</legend>
+                <WorkForm
+                  key={`WorkForm ${formObject.id}`}
+                  scopeState={formObject.scope}
+                  changeHandler={changeHandlerWork}
+                  changeHandlerScope={changeHandlerScope}
+                  workFormId={formObject.id}
+                />
+                <button
+                  onClick={(event) => {
+                    addHandlerScope(event, formObject.id);
+                  }}
+                >
+                  Add duty
+                </button>
+              </fieldset>
+            </form>
           );
         })}
       </div>

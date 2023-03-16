@@ -1,10 +1,10 @@
 const baseCV = {
   general: {
     data: {
-      generalName: "",
-      generalEmail: "",
-      generalPhoneNumber: "",
-      generalLocation: "",
+      generalName: "Andrew Tan",
+      generalEmail: "andrewwytan@gmail.com",
+      generalPhoneNumber: "012 ---",
+      generalLocation: "Shah Alam, Malaysia",
     },
   },
 
@@ -12,11 +12,17 @@ const baseCV = {
     {
       id: crypto.randomUUID(), // <WorkForm/> no. 1
       data: {
-        workCompany: "",
-        workPosition: "",
-        workFrom: "",
-        workTo: "",
+        workCompany: "Turner",
+        workPosition: "Civil Project Engineer",
+        workFrom: "Nov 2021",
+        workTo: "Nov 2022",
       },
+      scope: [
+        {
+          id: crypto.randomUUID(),
+          experience: "",
+        },
+      ],
     },
   ],
 };

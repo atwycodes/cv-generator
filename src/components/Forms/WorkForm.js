@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import TemplateForm from "../Utils/TemplateForm";
+import JobScopeForm from "./JobScopeForm";
 
 class WorkForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      id: props.workFormId,
-    };
-  }
   render() {
-    const { changeHandler, parentContainerClass = "form__container" } =
+    const { changeHandler, workFormId, scopeState, changeHandlerScope } =
       this.props;
 
     const formFields = [
@@ -22,22 +16,23 @@ class WorkForm extends Component {
 
     return (
       <div>
-        <form>
-          <fieldset className={parentContainerClass}>
-            <legend>Work Experience</legend>
-            {formFields.map((formObj, index) => {
-              return (
-                <TemplateForm
-                  changeHandler={(event) => changeHandler(event, this.state.id)}
-                  key={index}
-                  formId={formObj.id}
-                  formType={formObj.type}
-                  formLabel={formObj.label}
-                />
-              );
-            })}
-          </fieldset>
-        </form>
+        {formFields.map((formObj, index) => {
+          return (
+            <TemplateForm
+              changeHandler={(event) => changeHandler(event, workFormId)}
+              key={index}
+              formId={formObj.id}
+              formType={formObj.type}
+              formLabel={formObj.label}
+            />
+          );
+        })}
+
+        <JobScopeForm
+          scopeState={scopeState}
+          changeHandlerScope={changeHandlerScope}
+          workFormId={workFormId}
+        />
       </div>
     );
   }

@@ -13,7 +13,9 @@ class Main extends Component {
 
     this.handleGeneralChange = this.handleGeneralChange.bind(this);
     this.handleWorkChange = this.handleWorkChange.bind(this);
+    this.handleWorkScopeChange = this.handleWorkScopeChange.bind(this);
     this.addWorkForm = this.addWorkForm.bind(this);
+    this.addScopeForm = this.addScopeForm.bind(this);
   }
 
   handleGeneralChange(event) {
@@ -54,16 +56,67 @@ class Main extends Component {
       work: [
         ...prevState.work,
         {
-          id: crypto.randomUUID(), // <WorkForm/> no. 1
+          id: crypto.randomUUID(),
           data: {
             workCompany: "",
             workPosition: "",
             workFrom: "",
             workTo: "",
           },
+          scope: [
+            {
+              id: crypto.randomUUID(),
+              experience: "",
+            },
+          ],
         },
       ],
     }));
+    console.log(this.state);
+  }
+
+  handleWorkScopeChange(event, workIdCriteria, scopeIdCriteria) {
+    const { value } = event.target;
+
+    this.setState((prevState) => {
+      const newWork = prevState.work.map((workItem) => {
+        if (workItem.id === workIdCriteria) {
+          const newScope = workItem.scope.map((scopeItem) => {
+            if (scopeItem.id === scopeIdCriteria) {
+              return { ...scopeItem, experience: value };
+            }
+            return scopeItem;
+          });
+          return { ...workItem, scope: [...newScope] };
+        }
+        return workItem;
+      });
+      return { ...prevState, work: [...newWork] };
+    });
+
+    console.log(event.target.value);
+    console.log(this.state.work);
+  }
+
+  addScopeForm(event, workIdCriteria) {
+    event.preventDefault();
+    this.setState((prevState) => {
+      const newWork = prevState.work.map((workItem) => {
+        if (workItem.id === workIdCriteria) {
+          return {
+            ...workItem,
+            scope: [
+              ...workItem.scope,
+              { id: crypto.randomUUID(), experience: "" },
+            ],
+          };
+        }
+        return workItem;
+      });
+      return { ...prevState, work: [...newWork] };
+    });
+
+    console.log(this.state);
   }
 
   render() {
@@ -75,10 +128,11 @@ class Main extends Component {
           />
 
           <RenderWorkForm
-            workFormState={this.state.work}
-            changeHandler={this.handleWorkChange}
+            workState={this.state.work}
+            changeHandlerWork={this.handleWorkChange}
+            changeHandlerScope={this.handleWorkScopeChange}
+            addHandlerScope={this.addScopeForm}
           />
-
           <button onClick={this.addWorkForm}>Add Work Experience</button>
         </section>
         <section className="generated-cv__container">

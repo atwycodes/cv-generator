@@ -9,19 +9,29 @@ export class JobScopeForm extends Component {
     };
   }
   render() {
-    const { changeHandlerScope, scopeState } = this.props;
+    const { scopeState, changeHandlerScope, deleteHandlerScope } = this.props;
     return (
       <div>
         {scopeState.map((scopeItem, index) => {
           return (
-            <input
-              key={`scopeForm ${index}`}
-              placeholder="Enter job scope of works..."
-              type="text"
-              onChange={(event) =>
-                changeHandlerScope(event, this.state.id, scopeItem.id)
-              }
-            />
+            <div key={`scopeForm ${index}`}>
+              <input
+                placeholder="Enter job scope of works..."
+                type="text"
+                onChange={(event) =>
+                  changeHandlerScope(event, this.state.id, scopeItem.id)
+                }
+              />
+              <button
+                onClick={(event) => {
+                  console.log("to delete: ", scopeItem.id);
+                  console.log(this.state.id);
+                  deleteHandlerScope(event, this.state.id, scopeItem.id);
+                }}
+              >
+                Delete
+              </button>
+            </div>
           );
         })}
       </div>

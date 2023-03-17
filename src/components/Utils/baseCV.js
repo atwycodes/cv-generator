@@ -10,7 +10,7 @@ const baseCV = {
 
   work: [
     {
-      id: crypto.randomUUID(), // <WorkForm/> no. 1
+      id: crypto.randomUUID(),
       data: {
         workCompany: "Turner",
         workPosition: "Civil Project Engineer",
@@ -20,9 +20,20 @@ const baseCV = {
       scope: [
         {
           id: crypto.randomUUID(),
-          experience: "",
+          experience: "Chair Progress Meetings",
         },
       ],
+    },
+  ],
+
+  education: [
+    {
+      id: crypto.randomUUID(),
+      data: {
+        educationInstitution: "",
+        educationType: "",
+        educationGraduation: "",
+      },
     },
   ],
 };

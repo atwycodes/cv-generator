@@ -4,8 +4,13 @@ import JobScopeForm from "./JobScopeForm";
 
 class WorkForm extends Component {
   render() {
-    const { changeHandler, workFormId, scopeState, changeHandlerScope } =
-      this.props;
+    const {
+      changeHandler,
+      workFormId,
+      scopeState,
+      changeHandlerScope,
+      deleteHandlerScope,
+    } = this.props;
 
     const formFields = [
       { id: "workCompany", type: "text", label: "Company" },
@@ -27,11 +32,11 @@ class WorkForm extends Component {
             />
           );
         })}
-
         <JobScopeForm
           scopeState={scopeState}
           changeHandlerScope={changeHandlerScope}
           workFormId={workFormId}
+          deleteHandlerScope={deleteHandlerScope}
         />
       </div>
     );

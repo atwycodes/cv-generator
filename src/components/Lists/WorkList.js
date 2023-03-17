@@ -4,6 +4,7 @@ import JobScopeList from "./JobScopeList";
 class WorkList extends Component {
   render() {
     const { data } = this.props;
+    console.log("data", data);
     return (
       <div className={"work__container"}>
         {data.map((workItem, index) => {

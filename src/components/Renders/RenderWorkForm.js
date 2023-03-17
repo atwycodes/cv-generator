@@ -8,6 +8,8 @@ class RenderWorkForm extends Component {
       changeHandlerWork,
       changeHandlerScope,
       addHandlerScope,
+      deleteHandlerScope,
+      deleteHandlerWork,
     } = this.props;
 
     return (
@@ -25,14 +27,18 @@ class RenderWorkForm extends Component {
                   scopeState={formObject.scope}
                   changeHandler={changeHandlerWork}
                   changeHandlerScope={changeHandlerScope}
+                  deleteHandlerScope={deleteHandlerScope}
                   workFormId={formObject.id}
                 />
                 <button
-                  onClick={(event) => {
-                    addHandlerScope(event, formObject.id);
-                  }}
+                  onClick={(event) => addHandlerScope(event, formObject.id)}
                 >
                   Add duty
+                </button>
+                <button
+                  onClick={(event) => deleteHandlerWork(event, formObject.id)}
+                >
+                  Remove Work Experience
                 </button>
               </fieldset>
             </form>

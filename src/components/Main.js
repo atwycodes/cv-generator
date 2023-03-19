@@ -4,6 +4,8 @@ import GeneralList from "./Lists/GeneralList";
 import RenderWorkForm from "./Renders/RenderWorkForm";
 import WorkList from "./Lists/WorkList";
 import baseCV from "./Utils/baseCV";
+import RenderEducationForm from "./Renders/RenderEducationForm";
+import EducationList from "./Lists/EducationList";
 
 class Main extends Component {
   constructor(props) {
@@ -13,11 +15,14 @@ class Main extends Component {
 
     this.handleGeneralChange = this.handleGeneralChange.bind(this);
     this.handleWorkChange = this.handleWorkChange.bind(this);
-    this.handleWorkScopeChange = this.handleWorkScopeChange.bind(this);
     this.addWorkForm = this.addWorkForm.bind(this);
     this.deleteWorkForm = this.deleteWorkForm.bind(this);
+    this.handleWorkScopeChange = this.handleWorkScopeChange.bind(this);
     this.addScopeForm = this.addScopeForm.bind(this);
     this.deleteScope = this.deleteScope.bind(this);
+    this.handleEducationChange = this.handleEducationChange.bind(this);
+    this.addEducationForm = this.addEducationForm.bind(this);
+    this.deleteEducationForm = this.deleteEducationForm.bind(this);
   }
 
   handleGeneralChange(event) {
@@ -37,12 +42,12 @@ class Main extends Component {
     console.log(this.state.general);
   }
 
-  handleWorkChange(event, idCriteria) {
+  handleWorkChange(event, workIdCriteria) {
     const { value, id } = event.target;
 
     this.setState((prevState) => {
       const newWork = prevState.work.map((workItem) => {
-        if (workItem.id === idCriteria) {
+        if (workItem.id === workIdCriteria) {
           return { ...workItem, data: { ...workItem.data, [id]: value } };
         }
         return workItem;
@@ -74,8 +79,6 @@ class Main extends Component {
         },
       ],
     }));
-    console.log(this.state);
-    console.log(this.state.work);
   }
 
   deleteWorkForm(event, workIdCriteria) {
@@ -150,6 +153,53 @@ class Main extends Component {
     });
   }
 
+  handleEducationChange(event, educationIdCriteria) {
+    event.preventDefault();
+    const { value, id } = event.target;
+
+    this.setState((prevState) => {
+      const newEducation = prevState.education.map((educationItem) => {
+        if (educationItem.id === educationIdCriteria) {
+          return {
+            ...educationItem,
+            data: { ...educationItem.data, [id]: value },
+          };
+        }
+        return educationItem;
+      });
+      return { ...prevState, education: [...newEducation] };
+    });
+  }
+
+  addEducationForm() {
+    this.setState((prevState) => ({
+      ...prevState,
+      education: [
+        ...prevState.education,
+        {
+          id: crypto.randomUUID(),
+          data: {
+            educationInstitution: "",
+            educationType: "",
+            educationGraduation: "",
+          },
+        },
+      ],
+    }));
+    console.log(this.state);
+  }
+
+  deleteEducationForm(event, educationIdCriteria) {
+    event.preventDefault();
+    this.setState((prevState) => {
+      const newEducation = prevState.education.filter((educationItem) => {
+        if (educationItem.id !== educationIdCriteria) return educationItem;
+      });
+      return { ...prevState, education: [...newEducation] };
+    });
+    console.log(this.state);
+  }
+
   render() {
     return (
       <div className="main">
@@ -161,16 +211,24 @@ class Main extends Component {
           <RenderWorkForm
             workState={this.state.work}
             changeHandlerWork={this.handleWorkChange}
+            deleteHandlerWork={this.deleteWorkForm}
             changeHandlerScope={this.handleWorkScopeChange}
             addHandlerScope={this.addScopeForm}
             deleteHandlerScope={this.deleteScope}
-            deleteHandlerWork={this.deleteWorkForm}
           />
           <button onClick={this.addWorkForm}>Add Work Experience</button>
+
+          <RenderEducationForm
+            educationState={this.state.education}
+            changeHandlerEducation={this.handleEducationChange}
+            deleteHandlerEducation={this.deleteEducationForm}
+          />
+          <button onClick={this.addEducationForm}>Add Education</button>
         </section>
         <section className="generated-cv__container">
           <GeneralList data={this.state.general.data} />
           <WorkList data={this.state.work} />
+          <EducationList data={this.state.education} />
         </section>
       </div>
     );

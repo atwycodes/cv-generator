@@ -3,12 +3,16 @@ import TemplateForm from "../Utils/TemplateForm";
 
 class EducationForm extends Component {
   render() {
-    const { changeHandler, educationFormId } = this.props;
+    const { changeHandlerEducation, educationFormId } = this.props;
 
     const formFields = [
-      { id: "educationInstitution", type: "text", label: "Company" },
-      { id: "educationType", type: "text", label: "Position" },
-      { id: "educationGraduation", type: "text", label: "From" },
+      {
+        id: "educationInstitution",
+        type: "text",
+        label: "University / School",
+      },
+      { id: "educationType", type: "text", label: "Degree / Course" },
+      { id: "educationGraduation", type: "text", label: "Graduation Date" },
     ];
 
     return (
@@ -16,7 +20,9 @@ class EducationForm extends Component {
         {formFields.map((formObj, index) => {
           return (
             <TemplateForm
-              changeHandler={(event) => changeHandler(event, educationFormId)}
+              changeHandler={(event) =>
+                changeHandlerEducation(event, educationFormId)
+              }
               key={index}
               formId={formObj.id}
               formType={formObj.type}

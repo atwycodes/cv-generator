@@ -3,23 +3,31 @@ import EducationForm from "../Forms/EducationForm";
 
 class RenderEducationForm extends Component {
   render() {
-    const { educationState, changeHandler } = this.props;
+    const { educationState, changeHandlerEducation, deleteHandlerEducation } =
+      this.props;
 
     return (
       <div>
         {educationState.map((formObject, index) => {
           return (
             <form
-              key={`work-form__container ${formObject.id}`}
-              className="work-form__container"
+              key={`education-form__container ${formObject.id}`}
+              className="education-form__container"
             >
               <fieldset>
-                <legend>Work Experience</legend>
+                <legend>Education</legend>
                 <EducationForm
                   key={`EducationForm ${formObject.id}`}
-                  changeHandler={changeHandler}
+                  changeHandlerEducation={changeHandlerEducation}
                   educationFormId={formObject.id}
                 />
+                <button
+                  onClick={(event) =>
+                    deleteHandlerEducation(event, formObject.id)
+                  }
+                >
+                  Remove Education
+                </button>
               </fieldset>
             </form>
           );

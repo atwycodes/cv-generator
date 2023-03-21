@@ -3,8 +3,8 @@ import GeneralForm from "./Forms/GeneralForm";
 import RenderWorkForm from "./Renders/RenderWorkForm";
 import baseCV from "./Utils/baseCV";
 import RenderEducationForm from "./Renders/RenderEducationForm";
-import RenderGeneratedCV from "./Renders/RenderGeneratedCV";
 import PrintPDF from "./Utils/PrintPDF";
+import exampleCV from "./Utils/exampleCV";
 
 class Main extends Component {
   constructor(props) {
@@ -22,6 +22,32 @@ class Main extends Component {
     this.handleEducationChange = this.handleEducationChange.bind(this);
     this.addEducationForm = this.addEducationForm.bind(this);
     this.deleteEducationForm = this.deleteEducationForm.bind(this);
+    this.handleResetCV = this.handleResetCV.bind(this);
+    this.handleUseExampleCV = this.handleUseExampleCV.bind(this);
+  }
+
+  handleResetCV() {
+    this.setState(() => {
+      return {
+        general: {
+          ...baseCV.general,
+        },
+        work: [...baseCV.work],
+        education: [...baseCV.education],
+      };
+    });
+  }
+
+  handleUseExampleCV() {
+    this.setState(() => {
+      return {
+        general: {
+          ...exampleCV.general,
+        },
+        work: [...exampleCV.work],
+        education: [...exampleCV.education],
+      };
+    });
   }
 
   handleGeneralChange(event) {
@@ -219,6 +245,8 @@ class Main extends Component {
             </button>
           </div>
           <PrintPDF
+            resetHandler={this.handleResetCV}
+            exampleHandler={this.handleUseExampleCV}
             general={this.state.general.data}
             work={this.state.work}
             education={this.state.education}

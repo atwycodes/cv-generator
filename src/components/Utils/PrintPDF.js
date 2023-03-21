@@ -4,10 +4,11 @@ import RenderGeneratedCV from "../Renders/RenderGeneratedCV";
 
 class PrintPDF extends Component {
   render() {
-    const { general, work, education } = this.props;
+    const { general, work, education, resetHandler, exampleHandler } =
+      this.props;
     return (
       <div>
-        <div className="flex p-4 ">
+        <div className="flex flex-col p-4 ">
           <ReactToPrint
             trigger={() => {
               return (
@@ -16,6 +17,18 @@ class PrintPDF extends Component {
             }}
             content={() => this.componentRef}
           />
+          <button
+            onClick={() => resetHandler()}
+            className="add-button flex-grow"
+          >
+            Reset
+          </button>
+          <button
+            onClick={() => exampleHandler()}
+            className="add-button flex-grow"
+          >
+            Load Example
+          </button>
         </div>
         <div>
           <RenderGeneratedCV

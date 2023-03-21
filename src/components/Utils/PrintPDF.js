@@ -7,10 +7,12 @@ class PrintPDF extends Component {
     const { general, work, education } = this.props;
     return (
       <div>
-        <div className="p-4 text-center">
+        <div className="flex p-4 ">
           <ReactToPrint
             trigger={() => {
-              return <button className="generate-button">Generate PDF</button>;
+              return (
+                <button className="add-button flex-grow">Generate PDF</button>
+              );
             }}
             content={() => this.componentRef}
           />

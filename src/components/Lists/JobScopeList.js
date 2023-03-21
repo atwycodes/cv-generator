@@ -6,7 +6,11 @@ class JobScopeList extends Component {
     return (
       <ul>
         {data.map((scopeItem, index) => {
-          return <li key={index}>{scopeItem.experience}</li>;
+          return (
+            <li className="ml-6 list-disc text-sm" key={index}>
+              {scopeItem.experience}
+            </li>
+          );
         })}
       </ul>
     );

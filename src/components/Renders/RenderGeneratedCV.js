@@ -7,7 +7,7 @@ class RenderGeneratedCV extends Component {
   render() {
     const { general, work, education } = this.props;
     return (
-      <div className="text-red-500 border-2 border-rose-500 flex flex-col a4-page-size">
+      <div className="a4-page-size flex flex-col border border-black p-6 shadow-sm shadow-black">
         <GeneralList data={general} />
         <WorkList data={work} />
         <EducationList data={education} />

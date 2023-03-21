@@ -5,18 +5,18 @@ class EducationList extends Component {
     const { data } = this.props;
     return (
       <div>
-        <p>---Education---</p>
+        <p className="list-separator">EDUCATION</p>
         {data.map((educationItem, index) => {
           return (
-            <div key={`workContainer ${index}`}>
-              <p key={`educationInstitution ${index}`}>
-                School: {educationItem.data.educationInstitution}
+            <div className="list-parent" key={`workContainer ${index}`}>
+              <p className="list-title" key={`educationInstitution ${index}`}>
+                {educationItem.data.educationInstitution}
               </p>
-              <p key={`educationType ${index}`}>
-                Degree: {educationItem.data.educationType}
+              <p className="list-subtitle" key={`educationType ${index}`}>
+                {educationItem.data.educationType}
               </p>
-              <p key={`educationGraduation ${index}`}>
-                Grad Date: {educationItem.data.educationGraduation}
+              <p className="list-date" key={`educationGraduation ${index}`}>
+                {educationItem.data.educationGraduation}
               </p>
             </div>
           );

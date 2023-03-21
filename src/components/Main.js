@@ -192,8 +192,8 @@ class Main extends Component {
 
   render() {
     return (
-      <div className="flex flex-col place-items-center">
-        <div>
+      <div className="py-10">
+        <div className="flex flex-wrap justify-center gap-16">
           <div className="flex w-21cm flex-col rounded-lg border border-gray-300 bg-gray-300 p-4 shadow-md">
             <GeneralForm
               changeHandler={(event) => this.handleGeneralChange(event)}

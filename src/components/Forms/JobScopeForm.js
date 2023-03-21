@@ -11,11 +11,12 @@ export class JobScopeForm extends Component {
   render() {
     const { scopeState, changeHandlerScope, deleteHandlerScope } = this.props;
     return (
-      <div>
+      <>
         {scopeState.map((scopeItem, index) => {
           return (
-            <div key={`scopeForm ${index}`}>
+            <div className="col-span-2 flex" key={`scopeForm ${index}`}>
               <input
+                className="input-element flex-grow"
                 placeholder="Enter job scope of works..."
                 type="text"
                 onChange={(event) =>
@@ -23,9 +24,8 @@ export class JobScopeForm extends Component {
                 }
               />
               <button
+                className="delete-button"
                 onClick={(event) => {
-                  console.log("to delete: ", scopeItem.id);
-                  console.log(this.state.id);
                   deleteHandlerScope(event, this.state.id, scopeItem.id);
                 }}
               >
@@ -34,7 +34,7 @@ export class JobScopeForm extends Component {
             </div>
           );
         })}
-      </div>
+      </>
     );
   }
 }

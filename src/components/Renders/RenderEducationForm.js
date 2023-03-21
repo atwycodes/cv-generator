@@ -7,21 +7,19 @@ class RenderEducationForm extends Component {
       this.props;
 
     return (
-      <div>
+      <>
         {educationState.map((formObject, index) => {
           return (
-            <form
-              key={`education-form__container ${formObject.id}`}
-              className="education-form__container"
-            >
-              <fieldset>
-                <legend>Education</legend>
+            <form key={`education-form__container ${formObject.id}`}>
+              <fieldset className="flex flex-col">
+                <legend className="form-title">Education</legend>
                 <EducationForm
                   key={`EducationForm ${formObject.id}`}
                   changeHandlerEducation={changeHandlerEducation}
                   educationFormId={formObject.id}
                 />
                 <button
+                  className="delete-button"
                   onClick={(event) =>
                     deleteHandlerEducation(event, formObject.id)
                   }
@@ -32,7 +30,7 @@ class RenderEducationForm extends Component {
             </form>
           );
         })}
-      </div>
+      </>
     );
   }
 }

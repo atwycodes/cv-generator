@@ -4,7 +4,7 @@ export class GeneralList extends Component {
   render() {
     const { data } = this.props;
     return (
-      <div className={"general__container"}>
+      <div>
         {Object.keys(data).map((key, index) => {
           return <p key={index}>{data[key]}</p>;
         })}

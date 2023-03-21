@@ -3,8 +3,7 @@ import TemplateForm from "../Utils/TemplateForm";
 
 class GeneralForm extends Component {
   render() {
-    const { changeHandler, parentContainerClass = "form__container" } =
-      this.props;
+    const { changeHandler } = this.props;
 
     const formFields = [
       { id: "generalName", type: "text", label: "Name" },
@@ -14,9 +13,9 @@ class GeneralForm extends Component {
     ];
 
     return (
-      <form>
-        <fieldset className={parentContainerClass}>
-          <legend>Personal Information</legend>
+      <form className="">
+        <fieldset className="flex flex-col">
+          <legend className="form-title pt-0">Personal Information</legend>
           {formFields.map((formObj, index) => {
             return (
               <TemplateForm
@@ -28,13 +27,6 @@ class GeneralForm extends Component {
               />
             );
           })}
-
-          {/* <TemplateForm
-            changeHandler = {changeHandler}
-            formId = 'generalName'
-            formType = 'text'
-            formLabel = 'Name'
-          /> */}
         </fieldset>
       </form>
     );

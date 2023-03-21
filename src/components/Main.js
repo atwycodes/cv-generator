@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import GeneralForm from "./Forms/GeneralForm";
-import GeneralList from "./Lists/GeneralList";
 import RenderWorkForm from "./Renders/RenderWorkForm";
-import WorkList from "./Lists/WorkList";
 import baseCV from "./Utils/baseCV";
 import RenderEducationForm from "./Renders/RenderEducationForm";
-import EducationList from "./Lists/EducationList";
+import RenderGeneratedCV from "./Renders/RenderGeneratedCV";
+import PrintPDF from "./Utils/PrintPDF";
 
 class Main extends Component {
   constructor(props) {
@@ -39,7 +38,6 @@ class Main extends Component {
         },
       };
     });
-    console.log(this.state.general);
   }
 
   handleWorkChange(event, workIdCriteria) {
@@ -54,7 +52,6 @@ class Main extends Component {
       });
       return { ...prevState, work: [...newWork] };
     });
-    console.log(this.state);
   }
 
   addWorkForm() {
@@ -109,9 +106,6 @@ class Main extends Component {
       });
       return { ...prevState, work: [...newWork] };
     });
-
-    console.log(event.target.value);
-    console.log(this.state.work);
   }
 
   addScopeForm(event, workIdCriteria) {
@@ -131,8 +125,6 @@ class Main extends Component {
       });
       return { ...prevState, work: [...newWork] };
     });
-
-    console.log(this.state);
   }
 
   deleteScope(event, workIdCriteria, scopeIdCriteria) {
@@ -186,7 +178,6 @@ class Main extends Component {
         },
       ],
     }));
-    console.log(this.state);
   }
 
   deleteEducationForm(event, educationIdCriteria) {
@@ -197,39 +188,42 @@ class Main extends Component {
       });
       return { ...prevState, education: [...newEducation] };
     });
-    console.log(this.state);
   }
 
   render() {
     return (
-      <div className="main">
-        <section className="all-forms__container">
-          <GeneralForm
-            changeHandler={(event) => this.handleGeneralChange(event)}
+      <div className="flex flex-col place-items-center">
+        <div>
+          <div className="flex w-21cm flex-col rounded-lg border border-gray-300 bg-gray-300 p-4 shadow-md">
+            <GeneralForm
+              changeHandler={(event) => this.handleGeneralChange(event)}
+            />
+            <RenderWorkForm
+              workState={this.state.work}
+              changeHandlerWork={this.handleWorkChange}
+              deleteHandlerWork={this.deleteWorkForm}
+              changeHandlerScope={this.handleWorkScopeChange}
+              addHandlerScope={this.addScopeForm}
+              deleteHandlerScope={this.deleteScope}
+            />
+            <button className="add-button" onClick={this.addWorkForm}>
+              Add Work Experience
+            </button>
+            <RenderEducationForm
+              educationState={this.state.education}
+              changeHandlerEducation={this.handleEducationChange}
+              deleteHandlerEducation={this.deleteEducationForm}
+            />
+            <button className="add-button" onClick={this.addEducationForm}>
+              Add Education
+            </button>
+          </div>
+          <PrintPDF
+            general={this.state.general.data}
+            work={this.state.work}
+            education={this.state.education}
           />
-
-          <RenderWorkForm
-            workState={this.state.work}
-            changeHandlerWork={this.handleWorkChange}
-            deleteHandlerWork={this.deleteWorkForm}
-            changeHandlerScope={this.handleWorkScopeChange}
-            addHandlerScope={this.addScopeForm}
-            deleteHandlerScope={this.deleteScope}
-          />
-          <button onClick={this.addWorkForm}>Add Work Experience</button>
-
-          <RenderEducationForm
-            educationState={this.state.education}
-            changeHandlerEducation={this.handleEducationChange}
-            deleteHandlerEducation={this.deleteEducationForm}
-          />
-          <button onClick={this.addEducationForm}>Add Education</button>
-        </section>
-        <section className="generated-cv__container">
-          <GeneralList data={this.state.general.data} />
-          <WorkList data={this.state.work} />
-          <EducationList data={this.state.education} />
-        </section>
+        </div>
       </div>
     );
   }

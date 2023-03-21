@@ -20,7 +20,7 @@ class WorkForm extends Component {
     ];
 
     return (
-      <div>
+      <div className="grid grid-cols-2">
         {formFields.map((formObj, index) => {
           return (
             <TemplateForm

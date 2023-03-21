@@ -13,15 +13,12 @@ class RenderWorkForm extends Component {
     } = this.props;
 
     return (
-      <div>
+      <>
         {workState.map((formObject, index) => {
           return (
-            <form
-              key={`work-form__container ${formObject.id}`}
-              className="work-form__container"
-            >
-              <fieldset>
-                <legend>Work Experience</legend>
+            <form key={`work-form__container ${formObject.id}`}>
+              <fieldset className="flex flex-col">
+                <legend className="form-title">Work Experience</legend>
                 <WorkForm
                   key={`WorkForm ${formObject.id}`}
                   scopeState={formObject.scope}
@@ -31,11 +28,13 @@ class RenderWorkForm extends Component {
                   workFormId={formObject.id}
                 />
                 <button
+                  className="add-button"
                   onClick={(event) => addHandlerScope(event, formObject.id)}
                 >
-                  Add duty
+                  Add Scope of Work
                 </button>
                 <button
+                  className="delete-button"
                   onClick={(event) => deleteHandlerWork(event, formObject.id)}
                 >
                   Remove Work Experience
@@ -44,7 +43,7 @@ class RenderWorkForm extends Component {
             </form>
           );
         })}
-      </div>
+      </>
     );
   }
 }

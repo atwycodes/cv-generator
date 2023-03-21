@@ -16,7 +16,7 @@ class EducationForm extends Component {
     ];
 
     return (
-      <div>
+      <div className="flex flex-col">
         {formFields.map((formObj, index) => {
           return (
             <TemplateForm

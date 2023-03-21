@@ -4,12 +4,12 @@ import JobScopeList from "./JobScopeList";
 class WorkList extends Component {
   render() {
     const { data } = this.props;
-    console.log("data", data);
     return (
-      <div className={"work__container"}>
+      <div>
+        <p>---Work Experience---</p>
         {data.map((workItem, index) => {
           return (
-            <div className="work__wrapper" key={`workContainer ${index}`}>
+            <div key={`workContainer ${index}`}>
               <p key={`workCompany ${index}`}>
                 Company: {workItem.data.workCompany}
               </p>

@@ -22,6 +22,10 @@ const baseCV = {
           id: crypto.randomUUID(),
           experience: "Chair Progress Meetings",
         },
+        {
+          id: crypto.randomUUID(),
+          experience: "Assess Extension of Time (EOT) Claims by Contractor",
+        },
       ],
     },
   ],
@@ -30,9 +34,9 @@ const baseCV = {
     {
       id: crypto.randomUUID(),
       data: {
-        educationInstitution: "",
-        educationType: "",
-        educationGraduation: "",
+        educationInstitution: "Monash University Malaysia",
+        educationType: "Bachelor's Degree (Hons.) in Civil Engineering",
+        educationGraduation: "Dec 2019",
       },
     },
   ],

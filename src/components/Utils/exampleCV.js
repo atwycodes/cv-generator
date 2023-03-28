@@ -67,7 +67,7 @@ const exampleCV = {
         {
           id: crypto.randomUUID(),
           experience:
-            "Exposed to all aspects of the palm oil industry - from upstream plantation operations to downstream palm oil refining.",
+            "Exposed to all aspects of the palm oil industry - from upstream plantation operations to downstream palm oil refining",
         },
         {
           id: crypto.randomUUID(),
@@ -102,26 +102,12 @@ const exampleCV = {
         {
           id: crypto.randomUUID(),
           experience:
-            "Exposed to all aspects of the palm oil industry - from upstream plantation operations to downstream palm oil refining.",
+            "Structural Analysis of buildings and structural elements for various industrial, residential and commercial projects",
         },
         {
           id: crypto.randomUUID(),
           experience:
-            "Closely follow the commodity futures market for procurement of raw material",
-        },
-        {
-          id: crypto.randomUUID(),
-          experience:
-            "Liaise closely with in-house refineries to gauge material supply & production levels to plan procurement strategy",
-        },
-        {
-          id: crypto.randomUUID(),
-          experience:
-            "Conduct daily analysis of rival commodities' markets to anticipate CPO futures market behaviour",
-        },
-        {
-          id: crypto.randomUUID(),
-          experience: "Daily documentation of trades done for assigned market",
+            "Attend site walks with client during design phase to ascertain project requirements",
         },
       ],
     },
